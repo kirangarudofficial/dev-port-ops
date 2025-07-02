@@ -69,17 +69,6 @@ export const Hero: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <div className="space-y-8">
-            {/* Animated Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-primary-500/10 backdrop-blur-sm border border-primary-500/20 rounded-full text-sm text-primary-400"
-            >
-              <Cloud size={16} className="animate-pulse" />
-              AWS Certified Solutions Architect
-            </motion.div>
-
             {/* Main Headline */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
