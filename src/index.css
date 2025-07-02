@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom shimmer grid animations */
+@keyframes shimmer-flow {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+@keyframes shimmer-pulse {
+  0%, 100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes grid-drift {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(10px, -5px);
+  }
+  50% {
+    transform: translate(-5px, 10px);
+  }
+  75% {
+    transform: translate(-10px, -10px);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+/* Utility classes for shimmer effects */
+.shimmer-grid {
+  background-image: 
+    linear-gradient(rgba(100, 200, 255, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 200, 255, 0.2) 1px, transparent 1px);
+  background-size: 40px 40px;
+  animation: shimmer-flow 20s linear infinite, shimmer-pulse 4s ease-in-out infinite;
+}
+
+.shimmer-grid-dense {
+  background-image: 
+    linear-gradient(rgba(100, 200, 255, 0.25) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 200, 255, 0.25) 1px, transparent 1px);
+  background-size: 25px 25px;
+  animation: shimmer-flow 15s linear infinite, shimmer-pulse 3s ease-in-out infinite;
+}
+
+.shimmer-grid-sparse {
+  background-image: 
+    linear-gradient(rgba(100, 200, 255, 0.15) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 200, 255, 0.15) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: shimmer-flow 25s linear infinite, shimmer-pulse 5s ease-in-out infinite;
+}
+
+.grid-drift {
+  animation: grid-drift 30s ease-in-out infinite;
+}
+
+/* Enhanced dark theme colors */
+:root {
+  --shimmer-primary: rgba(100, 200, 255, 0.3);
+  --shimmer-secondary: rgba(150, 220, 255, 0.2);
+  --shimmer-accent: rgba(100, 200, 255, 0.1);
+  --dark-bg: #121212;
+  --dark-surface: #1e1e1e;
+  --dark-elevated: #2d2d2d;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+/* Ensure text remains readable over shimmer background */
+.text-content {
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom scrollbar for dark theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--dark-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--shimmer-primary);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--shimmer-secondary);
+}
