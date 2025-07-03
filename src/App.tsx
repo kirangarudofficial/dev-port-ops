@@ -27,17 +27,23 @@ function App() {
       {/* Content Layer */}
       <div className="relative z-10">
         <Navigation />
-        <main>
+        <main className="overflow-x-hidden">
           <Hero />
-          <RecentActivities />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <RecentActivities />
+          </div>
           <Timeline />
-          <Projects />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Projects />
+          </div>
           <Contributions />
           <ArchitectureShowcase />
           <ModernServices />
           <AIStack />
           <BlogInsights />
-          <Terminal />
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <Terminal />
+          </div>
           <Contact />
         </main>
         <Footer />
