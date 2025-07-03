@@ -4,18 +4,151 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Performance optimizations -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="theme-color" content="#00D9FF" />
+    
+    <!-- SEO Meta Tags -->
     <meta name="description" content="Senior DevOps Engineer & Cloud Architect - AWS Certified Solutions Architect building resilient systems that scale from startup MVPs to enterprise platforms." />
-    <meta name="keywords" content="DevOps Engineer, Cloud Architect, AWS, Kubernetes, Terraform, CI/CD, Infrastructure as Code" />
-    <meta property="og:title" content="DevOps Engineer & Cloud Architect Portfolio" />
+    <meta name="keywords" content="DevOps Engineer, Cloud Architect, AWS, Kubernetes, Terraform, CI/CD, Infrastructure as Code, Site Reliability Engineering" />
+    <meta name="author" content="DevOps Engineer" />
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="DevOps Engineer & Cloud Architect | Portfolio" />
     <meta property="og:description" content="Engineering Scalable Infrastructure for Tomorrow's Applications" />
     <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://devops-portfolio.com" />
+    <meta property="og:image" content="/og-image.jpg" />
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="DevOps Engineer & Cloud Architect" />
+    <meta name="twitter:description" content="Building scalable cloud infrastructure that never fails" />
+    <meta name="twitter:image" content="/twitter-image.jpg" />
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "DevOps Engineer",
+      "jobTitle": "Senior DevOps Engineer & Cloud Architect",
+      "description": "AWS Certified Solutions Architect specializing in scalable infrastructure and cloud-native solutions",
+      "url": "https://devops-portfolio.com",
+      "sameAs": [
+        "https://linkedin.com/in/devops-engineer",
+        "https://github.com/devops-engineer"
+      ]
+    }
+    </script>
+    
     <title>DevOps Engineer & Cloud Architect | Portfolio</title>
+    
+    <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://images.pexels.com" crossorigin>
+    
+    <!-- Critical CSS - Inline for faster rendering -->
+    <style>
+      /* Critical above-the-fold styles */
+      body {
+        margin: 0;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
+        background-color: #121212;
+        color: #f8fafc;
+        line-height: 1.6;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      
+      .hero-container {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(135deg, #0d0d0d 0%, #121212 100%);
+      }
+      
+      .loading-spinner {
+        width: 40px;
+        height: 40px;
+        border: 4px solid #334155;
+        border-top: 4px solid #00D9FF;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+      
+      /* Hide content until fonts load */
+      .font-loading {
+        visibility: hidden;
+      }
+      
+      .font-loaded .font-loading {
+        visibility: visible;
+      }
+    </style>
+    
+    <!-- Load fonts with display swap for better performance -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Preload critical resources -->
+    <link rel="preload" href="/src/main.tsx" as="script" crossorigin>
+    
+    <!-- Resource hints -->
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//images.pexels.com">
   </head>
   <body class="bg-dark-950 text-dark-50">
+    <!-- Loading indicator -->
+    <div id="loading-indicator" class="loading-spinner"></div>
+    
     <div id="root"></div>
+    
+    <!-- Load main script with defer for better performance -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Font loading optimization -->
+    <script>
+      // Optimize font loading
+      if ('fonts' in document) {
+        document.fonts.ready.then(() => {
+          document.documentElement.classList.add('font-loaded');
+          const loadingIndicator = document.getElementById('loading-indicator');
+          if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+          }
+        });
+      } else {
+        // Fallback for browsers without Font Loading API
+        setTimeout(() => {
+          document.documentElement.classList.add('font-loaded');
+          const loadingIndicator = document.getElementById('loading-indicator');
+          if (loadingIndicator) {
+            loadingIndicator.style.display = 'none';
+          }
+        }, 1000);
+      }
+      
+      // Service Worker registration for caching
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
   </body>
 </html>
